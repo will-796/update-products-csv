@@ -1,14 +1,17 @@
 import { useDropzone } from "react-dropzone";
 import { Dropzone, FilesPreview, Section } from "./style";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
+import { FileContext } from "../../context/fileContext";
 
 function Import() {
+  const { setFile } = useContext(FileContext);
   //aceitar somente csv
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
-
-    // Regra de negocio quando o arquivo for aceito
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      setFile(acceptedFiles);
+    },
+    [setFile]
+  );
 
   const { acceptedFiles, getRootProps, getInputProps, isDragActive } =
     useDropzone({
