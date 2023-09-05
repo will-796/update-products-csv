@@ -2,6 +2,7 @@ import { useDropzone } from "react-dropzone";
 import { Dropzone, FilesPreview, Section } from "./style";
 import { useCallback, useContext } from "react";
 import { FileContext } from "../../context/fileContext";
+import Errors from "../../components/erros";
 
 function Import() {
   const { setFile } = useContext(FileContext);
@@ -45,6 +46,7 @@ function Import() {
         <h4>Files</h4>
         <ul>{files}</ul>
       </FilesPreview>
+      <Errors />
     </Section>
   );
 }
