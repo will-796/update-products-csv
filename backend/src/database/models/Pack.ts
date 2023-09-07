@@ -14,6 +14,9 @@ class Pack extends Model {
   @Column({ allowNull: false })
   pack_id!: number
 
+  @Column({ allowNull: false })
+  name!: string
+
   @BelongsToMany(() => Product, () => PackProduct)
   products!: Product[]
 }
