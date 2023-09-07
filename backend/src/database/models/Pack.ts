@@ -18,7 +18,7 @@ class Pack extends Model {
   name!: string
 
   @BelongsToMany(() => Product, () => PackProduct)
-  products!: Product[]
+  products!: Array<Product & { PackProduct: PackProduct }>
 }
 
 export default Pack

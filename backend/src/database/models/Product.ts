@@ -24,7 +24,7 @@ class Product extends Model {
   sales_price!: number
 
   @BelongsToMany(() => Pack, () => PackProduct)
-  packs!: Pack[]
+  packs!: Array<Pack & { PackProduct: PackProduct }>
 }
 
 export default Product
