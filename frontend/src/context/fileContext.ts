@@ -1,10 +1,16 @@
 import { createContext } from "react";
 
+interface IError {
+  code : string;
+  message: string;
+}
+
+
 interface FileContextProps {
   file: File[];
   setFile: (file: File[]) => void;
-  errors: string[];
-  setErrors: (errors: string[]) => void;
+  errors: IError[];
+  setErrors: (errors: IError[]) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
   success: boolean;
