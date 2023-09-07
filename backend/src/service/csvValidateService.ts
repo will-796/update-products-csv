@@ -3,13 +3,11 @@ import { ICsvRow } from '../interfaces/csvRow'
 import { parse } from 'csv-parse/sync'
 import { IErrorDetail } from '../interfaces/errorDetail'
 import Product from '../database/models/Product'
-import Pack from '../database/models/Pack'
 import {
   PackValidationService,
   ProductValidationService,
 } from './strategies/strategy'
 import { PackRepository, ProductRepository } from '../database/models'
-import PackProduct from '../database/models/PackProduct'
 
 export class CsvValidateService {
   private packValidationService: PackValidationService
