@@ -6,6 +6,6 @@ const router = Router()
 
 const csvController = new CsvController()
 
-router.post('/validate', csvUpload, csvController.updateCsv)
+router.post('/update', csvUpload, csvController.updateCsv)
 
 export default router

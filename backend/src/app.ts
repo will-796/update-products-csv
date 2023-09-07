@@ -1,8 +1,6 @@
 import express, { Request, Response } from 'express'
-import { csvUpload } from './middlewares/multer'
 import { errorHandler } from './middlewares/errorHandler'
-import { CsvController } from './controller/csvController'
-import router from './routes/validateRoute'
+import router from './routes'
 
 const app = express()
 
@@ -14,6 +12,6 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use(router)
 
-// app.use(errorHandler)
+app.use(errorHandler)
 
 export default app
