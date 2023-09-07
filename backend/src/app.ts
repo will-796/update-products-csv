@@ -1,8 +1,11 @@
 import express, { Request, Response } from 'express'
 import { errorHandler } from './middlewares/errorHandler'
 import router from './routes'
+import cors from 'cors'
 
 const app = express()
+
+app.use(cors())
 
 app.use(express.json())
 
