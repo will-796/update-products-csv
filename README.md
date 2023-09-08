@@ -1,4 +1,3 @@
-
 # Atualização de Preços - Teste Técnico da Shopper
 
 Bem-vindo ao repositório do teste técnico de atualização de preços da Shopper.com.br.
@@ -81,7 +80,7 @@ Agora que o banco de dados MySQL está configurado e as variáveis de ambiente e
 1. **Clone o Repositório:**
 
    Clone este repositório Git para a sua máquina local usando o seguinte comando:
-  com https:
+   com https:
 
    ```bash
    git clone https://github.com/will-796/update-products-csv.git
@@ -91,8 +90,7 @@ Agora que o banco de dados MySQL está configurado e as variáveis de ambiente e
 
    ```bash
     git clone git@github.com:will-796/update-products-csv.git
-    ```
-
+   ```
 2. **Configuração das Variáveis de Ambiente (Backend):**
 
    No diretório `backend`, crie um arquivo `.env` se ele ainda não existir. Abra o arquivo `.env` com um editor de texto e adicione as seguintes variáveis de ambiente com os valores apropriados para o seu ambiente de desenvolvimento:
@@ -107,7 +105,6 @@ Agora que o banco de dados MySQL está configurado e as variáveis de ambiente e
    ```
 
    Certifique-se de substituir os valores pelas configurações corretas do seu ambiente.
-
 3. **Instalação das Dependências:**
 
    No diretório `frontend`, execute o seguinte comando para instalar as dependências do frontend:
@@ -124,7 +121,6 @@ Agora que o banco de dados MySQL está configurado e as variáveis de ambiente e
    npm install
    npm run resetdb #comando para criar as tabelas e inserir os dados de seed
    ```
-
 4. **Execução do Projeto:**
 
    - No diretório `frontend`, execute o seguinte comando para iniciar o frontend:
@@ -132,14 +128,13 @@ Agora que o banco de dados MySQL está configurado e as variáveis de ambiente e
      ```bash
      npm run dev
      ```
-
    - No diretório `backend`, execute o seguinte comando para iniciar o backend:
 
      ```bash
      npm run dev
      ```
 
-Agora, o projeto frontend e backend deve estar rodando localmente e você pode acessá-lo em seu navegador. O frontend estará disponível em <http://localhost:5173/> e o backend estará disponível em <http://localhost:3000/>.
+Agora, o projeto frontend e backend deve estar rodando localmente e você pode acessá-lo em seu navegador. O frontend estará disponível em [http://localhost:5173/](http://localhost:5173/) e o backend estará disponível em [http://localhost:3000/](http://localhost:3000/).
 
 ### Scripts
 
@@ -163,11 +158,10 @@ para executar os scripts, você deve estar no diretório `frontend` ou `backend`
 
 Certifique-se de executar esses comandos conforme necessário ao desenvolver e implantar o projeto frontend e backend.
 
-
 ## APIs e Endpoints
 
 - API: O backend utiliza o endpoint [localhost:3000](http://localhost:3000/)
-- Frontend: O frontend utiliza o endpoint padrão do Vite <http://localhost:5173/>
+- Frontend: O frontend utiliza o endpoint padrão do Vite [http://localhost:5173/](http://localhost:5173/)
 - Backend:
   - `/validation`: Endpoint para validar os dados do arquivo CSV.
   - `/update`: Endpoint para atualizar os preços dos produtos.
@@ -178,5 +172,5 @@ Se você tiver alguma dúvida ou precisar de assistência com o projeto frontend
 
 - Nome: Willian Portela Cruz
 - Email: <willianportela1@gmail.com>
-- GitHub: [Seu Perfil no GitHub](https://github.com/will-796)
-- LinkedIn: [Seu Perfil no LinkedIn](https://www.linkedin.com/in/willian-portela)
+- GitHub: [will-796](https://github.com/will-796)
+- LinkedIn: [Willian Portela](https://www.linkedin.com/in/willian-portela)
