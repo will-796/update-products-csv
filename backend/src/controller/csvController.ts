@@ -12,6 +12,8 @@ export class CsvController {
   }
 
   validateCsv = async (req: Request, res: Response) => {
+    console.log(req.file?.buffer);
+    
     if (!req.file) {
       throw new BadRequestError('Arquivo CSV não foi fornecido.')
     }
@@ -21,10 +23,10 @@ export class CsvController {
     }
     const errors = await this.csvValidateService.validate(req.file.buffer)
 
-    if (errors.length === 0) {
-      return res.status(200).json({ valid: true })
+    if (errors.errors.length === 0 && errors.products.some(product => product.errors.length > 0)) {
+      return res.status(200).json({ valid: true, products:[]})
     } else {
-      return res.status(200).json({ valid: false, errors })
+      return res.status(200).json({ valid: false, ...errors })
     }
   }
 
