@@ -18,7 +18,6 @@ export const ModalContent = styled.div`
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-  min-height: 500px;
 `;
 
 export const CloseButton = styled.span`
@@ -32,7 +31,6 @@ export const CloseButton = styled.span`
 export const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
-  margin-top: 20px;
 
   th,
   td {
@@ -52,5 +50,4 @@ export const Table = styled.table`
   td {
     border-bottom: 1px solid #ddd;
   }
-
 `;

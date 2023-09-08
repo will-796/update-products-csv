@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { FileContext } from "../../context/fileContext";
@@ -47,20 +47,13 @@ function Import() {
     }
   };
 
-  const { acceptedFiles, getRootProps, getInputProps, isDragActive } =
-    useDropzone({
-      onDrop,
-      accept: {
-        "text/csv": [".csv"],
-      },
-      maxFiles: 1,
-    });
-
-  const files = acceptedFiles.map((file) => (
-    <li key={file.name}>
-      {file.name} - {file.size} bytes
-    </li>
-  ));
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      "text/csv": [".csv"],
+    },
+    maxFiles: 1,
+  });
 
   const updateProducts = async () => {
     try {
@@ -79,12 +72,8 @@ function Import() {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  useEffect(() => {
-    console.log("file mudou");
-  }, [file]);
-  
   return (
     <Section className="container">
       <h1>Carregue seu arquivo</h1>
@@ -101,7 +90,13 @@ function Import() {
       </Dropzone>
       <FilesPreview>
         <h4>Arquivos</h4>
-        <ul>{files}</ul>
+        {file.length === 0 ? (
+          <p>Nenhum arquivo selecionado</p>
+        ) : (
+          <p>
+            {file[0].name} - {file[0].size} bytes
+          </p>
+        )}
       </FilesPreview>
       <ButtonContainer>
         <button onClick={handleValidateCsv}>Validar</button>
