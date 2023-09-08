@@ -2,7 +2,9 @@ import { useCallback, useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { FileContext } from "../../context/fileContext";
-import { ButtonContainer, Dropzone, FilesPreview, Section } from "./style";
+import { ButtonContainer, Dropzone, FilesPreview, Section, Title } from "./style";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 import ValidationModal from "../../components/validationModal";
 
@@ -34,7 +36,7 @@ function Import() {
         formData
       );
 
-      console.log(response.data);
+
 
       setApiData(response.data);
       setShowModal(true);
@@ -44,6 +46,7 @@ function Import() {
       }
     } catch (error) {
       console.log(error);
+      toast.error("Erro ao validar arquivo!");
     }
   };
 
@@ -59,24 +62,31 @@ function Import() {
     try {
       const formData = new FormData();
       formData.append("csv", file[0]);
-
-      const response = await axios.post(
-        "http://localhost:3000/update",
-        formData
-      );
-
-      console.log(response.data);
+      toast.promise(
+        axios.post("http://localhost:3000/update", formData),
+        {
+          pending: "Atualizando produtos...",
+          success: "Produtos atualizados com sucesso!",
+          error: "Erro ao atualizar produtos!",
+        },
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+        })
       setFile([]);
       setSuccess(false);
-      alert("Produtos atualizados com sucesso!");
     } catch (error) {
       console.log(error);
+      toast.error("Erro ao atualizar produtos!");
     }
   };
 
   return (
     <Section className="container">
-      <h1>Carregue seu arquivo</h1>
+      <Title>Carregue seu arquivo</Title>
       <Dropzone {...getRootProps({ className: "dropzone" })}>
         <input {...getInputProps()} />
         {isDragActive ? (

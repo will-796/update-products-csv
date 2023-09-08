@@ -62,9 +62,10 @@ export const ButtonContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   width: 100%;
+
   button {
-    width: 50%;
-    margin: 10px;
+    width: 40%;
+    margin-top: 10px;
     height: 50px;
     border: none;
     border-radius: 5px;
@@ -84,4 +85,9 @@ export const ButtonContainer = styled.div`
     }
   }
 
+`;
+
+export const Title = styled.h1`
+  font-size: 2em;
+  text-align: center;
 `;
