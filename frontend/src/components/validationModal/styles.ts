@@ -18,7 +18,7 @@ export const ModalContent = styled.div`
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-  max-width: 400px;
+  min-height: 500px;
 `;
 
 export const CloseButton = styled.span`
@@ -27,4 +27,30 @@ export const CloseButton = styled.span`
   right: 10px;
   cursor: pointer;
   font-size: 24px;
+`;
+
+export const Table = styled.table`
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  th {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  td {
+    border-bottom: 1px solid #ddd;
+  }
+
 `;

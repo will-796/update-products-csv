@@ -15,6 +15,4 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use(router)
 
-// app.use(errorHandler)
-
 export default app

@@ -2,13 +2,13 @@ interface FileContextProviderProps {
   children: React.ReactNode;
 }
 import { useMemo, useState } from "react";
-import { FileContext } from "./fileContext";
+import { FileContext, apiData } from "./fileContext";
 
 export default function FileContextProvider({
   children,
 }: FileContextProviderProps) {
   const [file, setFile] = useState<File[]>([]);
-  const [errors, setErrors] = useState<string[]>([]);
+  const [apiData, setApiData] = useState();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -16,19 +16,19 @@ export default function FileContextProvider({
   const value = useMemo(
     () => ({
       file,
-      errors,
+      apiData,
       loading,
       success,
       showModal,
       setFile,
-      setErrors,
+      setApiData,
       setLoading,
       setSuccess,
       setShowModal,
     }),
     [
       file,
-      errors,
+      apiData,
       loading,
       success,
       showModal,

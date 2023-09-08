@@ -1,16 +1,29 @@
 import { createContext } from "react";
 
-interface IError {
-  code : string;
+interface IErrorDetail {
+  code: string;
   message: string;
 }
 
+interface IProductReturn {
+  code: string;
+  name: string;
+  newPrice: number;
+  oldPrice: number;
+  errors: string[];
+}
+
+export interface apiData {
+  valid: boolean;
+  products: IProductReturn[];
+  errors: IErrorDetail[];
+}
 
 interface FileContextProps {
   file: File[];
   setFile: (file: File[]) => void;
-  errors: IError[];
-  setErrors: (errors: IError[]) => void;
+  apiData: apiData;
+  setApiData: (data: apiData[]) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
   success: boolean;
@@ -21,8 +34,8 @@ interface FileContextProps {
 export const FileContext = createContext<FileContextProps>({
   file: [],
   setFile: () => {},
-  errors: [],
-  setErrors: () => {},
+  apiData: { valid: false, products: [], errors: [] },
+  setApiData: () => {},
   loading: false,
   setLoading: () => {},
   success: false,

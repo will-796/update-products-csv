@@ -1,18 +1,21 @@
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { FileContext } from "../../context/fileContext";
-import ValidationSuccessModal from "../../components/validationSuccessModal";
-import UpdateModal from "../../components/updateModal";
-import { Dropzone, FilesPreview, Section } from "./style";
-import ErrorsModal from "../../components/modalErrors";
+import { ButtonContainer, Dropzone, FilesPreview, Section } from "./style";
+
+import ValidationModal from "../../components/validationModal";
 
 function Import() {
-  const { setFile, success, file, setErrors, errors, setShowModal, showModal } =
-    useContext(FileContext);
-
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const {
+    showModal,
+    success,
+    file,
+    setFile,
+    setApiData,
+    setShowModal,
+    setSuccess,
+  } = useContext(FileContext);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -23,25 +26,25 @@ function Import() {
 
   const handleValidateCsv = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/validate", {
-        file: file,
-      });
+      const formData = new FormData();
+      formData.append("csv", file[0]);
 
-      console.log(response);
+      const response = await axios.post(
+        "http://localhost:3000/validate",
+        formData
+      );
 
-      if (response.data.errors.length > 0) {
-        setErrors(response.data.errors);
-        setShowModal(true);
-      } else {
-        setShowSuccessModal(true); // Mostrar o modal de sucesso
+      console.log(response.data);
+
+      setApiData(response.data);
+      setShowModal(true);
+      setSuccess(response.data.valid);
+      if (!response.data.valid) {
+        setFile([]);
       }
     } catch (error) {
-      console.error("Erro ao validar o arquivo CSV:", error);
+      console.log(error);
     }
-  };
-
-  const handleUpdate = async () => {
-    setShowUpdateModal(true);
   };
 
   const { acceptedFiles, getRootProps, getInputProps, isDragActive } =
@@ -59,6 +62,29 @@ function Import() {
     </li>
   ));
 
+  const updateProducts = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("csv", file[0]);
+
+      const response = await axios.post(
+        "http://localhost:3000/update",
+        formData
+      );
+
+      console.log(response.data);
+      setFile([]);
+      setSuccess(false);
+      alert("Produtos atualizados com sucesso!");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    console.log("file mudou");
+  }, [file]);
+  
   return (
     <Section className="container">
       <h1>Carregue seu arquivo</h1>
@@ -74,26 +100,17 @@ function Import() {
         )}
       </Dropzone>
       <FilesPreview>
-        <h4>Files</h4>
+        <h4>Arquivos</h4>
         <ul>{files}</ul>
       </FilesPreview>
-      <button onClick={handleValidateCsv}>Validar</button>
-      <button disabled={!success} onClick={handleUpdate}>
-        Atualizar
-      </button>
-      <ErrorsModal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        errors={errors}
-      />
-      <ValidationSuccessModal
-        isOpen={showSuccessModal}
-        onClose={() => setShowSuccessModal(false)}
-      />
-      <UpdateModal
-        isOpen={showUpdateModal}
-        onClose={() => setShowUpdateModal(false)}
-      />
+      <ButtonContainer>
+        <button onClick={handleValidateCsv}>Validar</button>
+        <button disabled={!success} onClick={updateProducts}>
+          Atualizar
+        </button>
+      </ButtonContainer>
+
+      <ValidationModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </Section>
   );
 }

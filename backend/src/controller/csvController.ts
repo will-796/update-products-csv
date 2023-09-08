@@ -13,13 +13,12 @@ export class CsvController {
 
   validateCsv = async (req: Request, res: Response) => {
     console.log(req.file?.buffer);
-    
     if (!req.file) {
-      throw new BadRequestError('Arquivo CSV não foi fornecido.')
+      return res.status(400).json({ error: 'Arquivo CSV não foi fornecido.' })
     }
 
     if (!req.file.mimetype.includes('csv')) {
-      throw new BadRequestError('Arquivo fornecido não é um CSV.')
+      return res.status(400).json({ error: 'Arquivo fornecido não é um CSV.' })
     }
     const errors = await this.csvValidateService.validate(req.file.buffer)
 
@@ -32,11 +31,11 @@ export class CsvController {
 
   updateCsv = async (req: Request, res: Response) => {
     if (!req.file) {
-      throw new BadRequestError('Arquivo CSV não foi fornecido.')
+      return res.status(400).json({ error: 'Arquivo CSV não foi fornecido.' })
     }
 
     if (!req.file.mimetype.includes('csv')) {
-      throw new BadRequestError('Arquivo fornecido não é um CSV.')
+      return res.status(400).json({ error: 'Arquivo fornecido não é um CSV.' })
     }
     await this.csvUpdateService.update(req.file.buffer)
 
