@@ -23,8 +23,8 @@ export class CsvController {
     }
     const errors = await this.csvValidateService.validate(req.file.buffer)
 
-    if (errors.errors.length === 0 && errors.products.some(product => product.errors.length > 0)) {
-      return res.status(200).json({ valid: true, products:[]})
+    if (errors.errors.length === 0 && errors.products.every(product => product.errors.length === 0)) {
+      return res.status(200).json({ valid: true, ...errors})
     } else {
       return res.status(200).json({ valid: false, ...errors })
     }

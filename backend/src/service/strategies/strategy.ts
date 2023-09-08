@@ -16,7 +16,7 @@ export class ProductValidationService implements Strategy {
     const productReturn: IProductReturn = {
       code: row.product_code,
       name: product.name,
-      oldPrice: product.sales_price,
+      oldPrice: Number(product.sales_price),
       newPrice: row.new_price,
       errors: [],
     };
@@ -51,7 +51,6 @@ export class PackValidationService implements Strategy {
       newPrice: row.new_price,
       errors: [],
     };
-    console.log(packReturn);
 
     // verifica se algum produto do pacote está no array do csv
     const productsCsvInPack = csv.filter((row) => {
@@ -68,7 +67,6 @@ export class PackValidationService implements Strategy {
     const packSum = productsCsvInPack.reduce((acc, row) => {
       return acc + Number(row.new_price);
     }, 0);
-    console.log(packSum, 'teste');
     
     if (row.new_price !== packSum) {
       packReturn.errors.push("Preço do pacote deve ser igual que a soma dos produtos.");
