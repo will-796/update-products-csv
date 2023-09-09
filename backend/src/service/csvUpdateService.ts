@@ -21,10 +21,8 @@ export class CsvUpdateService {
 
     for (const row of csvData) {
       const { product_code: productCode, new_price: newPrice } = row
-      // atualiza o preço do produto
-      console.log();
       
-      const [updatedRowsCount] = await ProductRepository.update(
+      await ProductRepository.update(
         { sales_price: newPrice }, // Novos valores a serem atualizados
         { where: { code: productCode } } // Condição para identificar o registro a ser atualizado
       )

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CloseButton, ModalContent, ModalOverlay, Table } from "./styles";
+import { CloseButton, ModalContent, ModalOverlay, Table, Title } from "./styles";
 import { FileContext } from "../../context/fileContext";
 
 interface ValidationSuccessModalProps {
@@ -28,7 +28,7 @@ function ValidationModal({ isOpen, onClose }: ValidationSuccessModalProps) {
     <ModalOverlay isOpen={isOpen}>
       <ModalContent>
         <CloseButton onClick={onClose}>&times;</CloseButton>
-        <h1>{apiData.valid ? "produtos validos" : "produtos inválidos"}</h1>
+        <Title valid={apiData.valid}>{apiData.valid ? "produtos validos" : "produtos inválidos"}</Title>
         <Table>
           <thead>
             <tr>

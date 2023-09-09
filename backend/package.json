@@ -10,7 +10,8 @@
     "cleanup-config": "rm -rf ./src/database/config/config.js",
     "migrate": "npm run build-config && npx sequelize-cli db:migrate && npm run cleanup-config",
     "drop": "npm run build-config && npx sequelize-cli db:drop && npm run cleanup-config",
-    "resetdb": "npm run build-config && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm run cleanup-config"
+    "resetdb": "npm run build-config && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm run cleanup-config",
+    "start": "npm run resetdb && npm run dev"
   },
   "keywords": [],
   "author": "",

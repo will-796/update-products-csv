@@ -51,3 +51,10 @@ export const Table = styled.table`
     border-bottom: 1px solid #ddd;
   }
 `;
+
+// change color of the text in the table by bool
+export const Title = styled.h2<{ valid: boolean }>`
+  text-align: center;
+  margin-bottom: 20px;
+  color: ${(props) => (props.valid ? "green" : "red")};
+`;

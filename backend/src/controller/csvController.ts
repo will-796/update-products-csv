@@ -12,7 +12,7 @@ export class CsvController {
   }
 
   validateCsv = async (req: Request, res: Response) => {
-    console.log(req.file?.buffer);
+
     if (!req.file) {
       return res.status(400).json({ error: 'Arquivo CSV não foi fornecido.' })
     }

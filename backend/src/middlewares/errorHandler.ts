@@ -12,12 +12,12 @@ export const errorHandler = (
   if (err instanceof CustomError) {
     const { statusCode, message, details } = err
     const errorResponse = { statusCode, message, details }
-    console.log(errorResponse)
+    console.error(errorResponse)
 
     res.status(statusCode).json(errorResponse)
   } else {
     const errorResponse = new InternalServerError('Erro interno no servidor.')
-    console.log(errorResponse)
+    console.error(errorResponse)
     res.status(errorResponse.statusCode).json(errorResponse)
   }
 }

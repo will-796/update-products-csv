@@ -45,7 +45,7 @@ function Import() {
         setFile([]);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error("Erro ao validar arquivo!");
     }
   };
@@ -79,7 +79,7 @@ function Import() {
       setFile([]);
       setSuccess(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error("Erro ao atualizar produtos!");
     }
   };

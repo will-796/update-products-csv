@@ -84,7 +84,6 @@ export class CsvValidateService {
         dataReturn.errors.push( {code: productCode, message: 'Produto/pacote não encontrados.'})
       }
     }
-    console.log(dataReturn);
     
     return dataReturn;
   }
