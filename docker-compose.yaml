@@ -6,37 +6,35 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: db
     ports:
-      - "3306:3306"
+      - 3306:3306
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] 
       retries: 5
+    volumes:
+      - dbvolume:/var/lib/mysql
   backend:
     build: ./backend
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - ./backend:/app/backend
-    depends_on:
+    depends_on: 
       db:
         condition: service_healthy
-    env_file:
-      - ./backend/.env
-    healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3001"] 
-      timeout: 10s
-      retries: 5
+    environment:
+    - DB_HOST=db
+    - DB_USER=root
+    - DB_PASSWORD=password
+    - DB_DATABASE=development_database
+    - DB_PORT=3306
+    - PORT=3000
+
   frontend:
     build: ./frontend
     ports:
-      - "5173:5173"
-    depends_on:
-      backend:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:5173"]
-      timeout: 10s
-      retries: 5
+      - 5173:5173
     volumes:
       - ./frontend:/app/frontend
+volumes:
+  dbvolume:
