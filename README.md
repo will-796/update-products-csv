@@ -75,6 +75,42 @@ docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATAB
 
 Agora que o banco de dados MySQL está configurado e as variáveis de ambiente estão atualizadas, você pode seguir as instruções abaixo para executar o projeto localmente:
 
+**Passo a Passo para Rodar o Projeto com Docker**
+
+1. **Clone o Repositório:**
+
+   Clone este repositório Git para a sua máquina local usando o seguinte comando:
+   com https:
+
+   ```bash
+   git clone
+
+# docker compose
+
+1. **Clone o Repositório:**
+
+   Clone este repositório Git para a sua máquina local usando o seguinte comando:
+   com https:
+
+   ```bash
+   git clone https://github.com/will-796/update-products-csv.git
+   ```
+
+   ou com ssh:
+
+   ```bash
+    git clone git@github.com:will-796/update-products-csv.git
+   ```
+2. **Rodar o docker-compose**
+
+   Clone este repositório Git para a sua máquina local usando o seguinte comando:
+   com https:
+
+   ```bash
+    docker-compose up 
+   ```
+
+
 **Passo a Passo para Rodar o Projeto Localmente**
 
 1. **Clone o Repositório:**
